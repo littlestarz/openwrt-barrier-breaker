@@ -46,7 +46,7 @@
 +
 +#endif
 --- /dev/null
-+++ b/arch/mips/lantiq/falcon/softdog_vpe.c
++++ b/arch/mips/lantiq/softdog_vpe.c
 @@ -0,0 +1,109 @@
 +/*
 +** =============================================================================
