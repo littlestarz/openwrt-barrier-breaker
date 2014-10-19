@@ -77,7 +77,7 @@
 +#include <linux/init.h>
 +#include <linux/jiffies.h>
 +
-+#include <falcon/vpe.h>
++#include <vpe.h>
 +
 +static unsigned long last_wdog_value;
 +static unsigned long vpe1_wdog_cleared;
