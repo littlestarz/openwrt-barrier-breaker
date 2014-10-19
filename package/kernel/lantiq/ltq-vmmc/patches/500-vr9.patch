@@ -10,7 +10,7 @@
  #include <asm/ifx/ifx_gpio.h>
 +#endif
 +
-+#include <falcon/vpe.h>
++#include <vpe.h>
 +
  
  /* device specific headers */

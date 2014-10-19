@@ -1,5 +1,5 @@
 --- /dev/null
-+++ b/arch/mips/include/asm/mach-lantiq/falcon/vpe.h
++++ b/arch/mips/include/asm/mach-lantiq/vpe.h
 @@ -0,0 +1,44 @@
 +/*
 + *   This program is free software; you can redistribute it and/or modify
