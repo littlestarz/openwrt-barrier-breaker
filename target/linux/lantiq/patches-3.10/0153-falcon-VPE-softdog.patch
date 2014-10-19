@@ -1,18 +1,3 @@
-From 79bbd1bfeb1dd9c66dd81605611d8d1db3e81822 Mon Sep 17 00:00:00 2001
-From: John Crispin <blogic@openwrt.org>
-Date: Thu, 29 Sep 2011 21:29:14 +0200
-Subject: [PATCH 16/25] falcon VPE softdog
-
----
- arch/mips/include/asm/mach-lantiq/falcon/vpe.h |   44 ++++++++++
- arch/mips/lantiq/falcon/softdog_vpe.c          |  109 ++++++++++++++++++++++++
- 2 files changed, 153 insertions(+), 0 deletions(-)
- create mode 100644 arch/mips/include/asm/mach-lantiq/falcon/vpe.h
- create mode 100644 arch/mips/lantiq/falcon/softdog_vpe.c
-
-diff --git a/arch/mips/include/asm/mach-lantiq/falcon/vpe.h b/arch/mips/include/asm/mach-lantiq/falcon/vpe.h
-new file mode 100644
-index 0000000..22a701b
 --- /dev/null
 +++ b/arch/mips/include/asm/mach-lantiq/falcon/vpe.h
 @@ -0,0 +1,44 @@
@@ -60,9 +45,6 @@ index 0000000..22a701b
 +int32_t vpe1_sw_wdog_register_reset_handler(VPE_SW_WDOG_RESET reset_fn);
 +
 +#endif
-diff --git a/arch/mips/lantiq/falcon/softdog_vpe.c b/arch/mips/lantiq/falcon/softdog_vpe.c
-new file mode 100644
-index 0000000..85d22a2
 --- /dev/null
 +++ b/arch/mips/lantiq/falcon/softdog_vpe.c
 @@ -0,0 +1,109 @@
@@ -175,6 +157,15 @@ index 0000000..85d22a2
 +MODULE_AUTHOR("LXDB");
 +MODULE_DESCRIPTION("Software Watchdog For VPE1");
 +MODULE_LICENSE("GPL");
--- 
-1.7.9.1
 
+--- a/arch/mips/lantiq/Makefile	2014-10-15 21:41:46.000000000 +0200
++++ b/arch/mips/lantiq/Makefile	2014-10-19 22:44:44.000000000 +0200
+@@ -4,7 +4,7 @@
+ # under the terms of the GNU General Public License version 2 as published
+ # by the Free Software Foundation.
+ 
+-obj-y := irq.o clk.o prom.o
++obj-y := irq.o clk.o prom.o softdog_vpe.o
+ 
+ obj-$(CONFIG_EARLY_PRINTK) += early_printk.o
+ 
