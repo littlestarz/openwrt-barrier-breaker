@@ -26,6 +26,14 @@
  /* ============================= */
  /* Local Macros & Definitions    */
  /* ============================= */
+@@ -108,6 +108,7 @@
+  */
+ IFX_int32_t ifx_mps_fw_wdog_start_ar9()
+ {
++   return IFX_SUCCESS;
+    /* vpe1_wdog_ctr should be set up in u-boot as
+       "vpe1_wdog_ctr_addr=0xBF2001B0"; protection from incorrect or missing
+       setting */
 @@ -292,7 +302,11 @@
           decryption. Subtract sizeof(u32) from length to avoid decryption
           of data beyond the FW image code */
