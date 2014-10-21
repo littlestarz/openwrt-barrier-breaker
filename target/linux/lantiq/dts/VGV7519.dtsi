@@ -17,7 +17,8 @@
 	sram@1F000000 {
 		vmmc@107000 {
 			status = "okay";
-			gpios = <&gpio 31 0>;
+			gpios = <&gpio 31 0
+                     &gpio 3 0>;
 		};
 	};
 	
