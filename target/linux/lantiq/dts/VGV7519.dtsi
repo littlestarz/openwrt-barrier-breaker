@@ -17,8 +17,9 @@
 	sram@1F000000 {
 		vmmc@107000 {
 			status = "okay";
-			gpios = <&gpio 31 0
-                     &gpio 3 0>;
+			gpios = <&gpio 30 0  //fxs relay
+				 &gpio 31 0  //still unknown
+				 &gpio 3 0>; //reset_slic?
 		};
 	};
 	
