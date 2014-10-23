@@ -34,15 +34,13 @@
     /* vpe1_wdog_ctr should be set up in u-boot as
        "vpe1_wdog_ctr_addr=0xBF2001B0"; protection from incorrect or missing
        setting */
-@@ -292,7 +302,11 @@
+@@ -292,7 +302,9 @@
           decryption. Subtract sizeof(u32) from length to avoid decryption
           of data beyond the FW image code */
        pFWDwnld->length -= sizeof(IFX_uint32_t);
-+	printk(KERN_INFO "I'm here 8a\n");
        ifx_bsp_basic_mps_decrypt((IFX_uint32_t)cpu1_base_addr, pFWDwnld->length);
 +     // ifx_bsp_basic_mps_decrypt_vr9_a21((IFX_uint32_t)cpu1_base_addr, pFWDwnld->length);
 +	//ifx_bsp_basic_mps_decrypt((unsigned int)cpu1_base_addr, pFWDwnld->length);
-+	printk(KERN_INFO "I'm here 8b\n");
     }
  
     /* calculate CRC32 checksum over downloaded image */
