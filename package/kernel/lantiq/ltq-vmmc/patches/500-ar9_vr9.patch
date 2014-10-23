@@ -1,6 +1,6 @@
 --- drv_vmmc-1.9.0_orig/src/mps/drv_mps_vmmc_ar9.c	2010-03-08 14:08:30.000000000 +0100
 +++ drv_vmmc-1.9.0/src/mps/drv_mps_vmmc_ar9.c	2014-10-14 21:49:20.000000000 +0200
-@@ -30,15 +30,25 @@
+@@ -30,15 +30,24 @@
  #include "ifxos_interrupt.h"
  
  /* board specific headers */
@@ -10,16 +10,15 @@
  #include <asm/ifx/ifx_gpio.h>
 +#endif
 +
++#include <lantiq_soc.h>
 +#include <vpe.h>
-+
  
  /* device specific headers */
  #include "drv_mps_vmmc.h"
  #include "drv_mps_vmmc_dbg.h"
  #include "drv_mps_vmmc_device.h"
- 
-+void (*ifx_bsp_basic_mps_decrypt)(unsigned int addr, int n) = (const void (*)(unsigned int, int))0xbf001ea4;    
-+void (*ifx_bsp_basic_mps_decrypt_vr9_a21)(unsigned int addr, int n) = (void (*)(unsigned int, int))0xbf001f38;
+
++const void (*ifx_bsp_basic_mps_decrypt)(unsigned int addr, int n) = NULL;
 +
 +#define IFX_MPS_SRAM IFXMIPS_MPS_SRAM
 +
@@ -34,13 +33,23 @@
     /* vpe1_wdog_ctr should be set up in u-boot as
        "vpe1_wdog_ctr_addr=0xBF2001B0"; protection from incorrect or missing
        setting */
-@@ -292,7 +302,9 @@
+@@ -292,7 +302,19 @@
           decryption. Subtract sizeof(u32) from length to avoid decryption
           of data beyond the FW image code */
        pFWDwnld->length -= sizeof(IFX_uint32_t);
++      switch(ltq_soc_type()) {
++   	   case SOC_TYPE_AR9:
++		   ifx_bsp_basic_mps_decrypt = (const void (*)(unsigned int, int))0xbf0017c4;
++		   break;
++	   case SOC_TYPE_VR9:
++		   ifx_bsp_basic_mps_decrypt = (const void (*)(unsigned int, int))0xbf001ea4;
++		   break;
++	   case SOC_TYPE_VR9_2:
++		   ifx_bsp_basic_mps_decrypt = (const void (*)(unsigned int, int))0xbf001f38;
++		   break;
++      }
++      if (ifx_bsp_basic_mps_decrypt)
        ifx_bsp_basic_mps_decrypt((IFX_uint32_t)cpu1_base_addr, pFWDwnld->length);
-+     // ifx_bsp_basic_mps_decrypt_vr9_a21((IFX_uint32_t)cpu1_base_addr, pFWDwnld->length);
-+	//ifx_bsp_basic_mps_decrypt((unsigned int)cpu1_base_addr, pFWDwnld->length);
     }
  
     /* calculate CRC32 checksum over downloaded image */
