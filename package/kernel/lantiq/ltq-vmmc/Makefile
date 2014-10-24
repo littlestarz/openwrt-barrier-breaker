@@ -120,9 +120,12 @@ endif
 
 ifeq ($(CONFIG_VOICE_CPE_VMMC_WITH_DEVICE_VR9),y)
   CONFIGURE_ARGS += --with-device=VR9
-  FW_SOURCE:=voip_vgv7519-enc.bin
   FW_TARGET:=voice_ar9_firmware.bin
-  FW_FILE=fw_voip_vgv7519.tar.gz
+  #FW_SOURCE:=voip_vgv7519-enc.bin
+  #FW_FILE=fw_voip_vgv7519.tar.gz
+  #FW_MD5SUM:=635edd1e2af8ca249cc7e80b779f3270
+  FW_SOURCE:=voip_R2.3.1.7.0-enc.bin
+  FW_FILE=fw_voip_vr9-2.3.1.7.0.tar.gz
   FW_MD5SUM:=635edd1e2af8ca249cc7e80b779f3270
   FW_DOWNLOAD:=1
   COEF_SRC:=ETSI_3_10.BIN
