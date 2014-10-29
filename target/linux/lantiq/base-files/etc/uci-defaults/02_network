@@ -172,6 +172,11 @@ BTHOMEHUBV2B)
 VGV7519)
 	lan_mac=$(mtd_get_mac_binary board_config 22)
 	wan_mac=$(macaddr_add "$lan_mac" 1)
+	ucidef_set_interface_lan "eth0.1"
+	ucidef_set_interface_wan "eth0.2"
+	ucidef_add_switch "switch0" "1" "1"
+	ucidef_add_switch_vlan "switch0" "1" "0 1 2 4 6t"
+	ucidef_add_switch_vlan "switch0" "2" "5 6t"
 	;;
 
 esac
