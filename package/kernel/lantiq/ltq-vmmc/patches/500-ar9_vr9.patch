@@ -29,7 +29,7 @@
   */
  IFX_int32_t ifx_mps_fw_wdog_start_ar9()
  {
-+   return IFX_SUCCESS;
++   return IFX_SUCCESS; /* FIXME - Disable start wdog... */
     /* vpe1_wdog_ctr should be set up in u-boot as
        "vpe1_wdog_ctr_addr=0xBF2001B0"; protection from incorrect or missing
        setting */
